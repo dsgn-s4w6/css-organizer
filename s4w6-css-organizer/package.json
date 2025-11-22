@@ -1,38 +1,95 @@
 {
   "name": "s4w6-css-organizer",
   "displayName": "S4W6 CSS Organizer",
-  "description": "Clean up your CSS files blazing fast!",
-  "version": "0.0.1",
+  "description": "Tidy up your CSS files crazy fast",
+  "version": "1.0.0",
   "engines": {
-    "vscode": "^1.106.1"
+      "vscode": "^1.60.0"
   },
-  "categories": [
-    "Other"
+  "categories": ["Formatters"],
+  "activationEvents": [
+      "onCommand:css-organizer.organize"
   ],
-  "activationEvents": [],
-  "main": "./extension.js",
+  "main": "extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "s4w6-css-organizer.helloWorld",
-        "title": "Hello World"
+      "commands": [
+          {
+              "command": "css-organizer.organize",
+              "title": "Clean up!"
+          }
+      ],
+      "keybindings": [
+          {
+              "command": "css-organizer.organize",
+              "key": "ctrl+alt+o",
+              "mac": "cmd+alt+o",
+              "when": "editorTextFocus && (editorLangId == css || editorLangId == scss || editorLangId == less)"
+          }
+      ],
+      "configuration": {
+          "title": "S4W6 CSS Organizer",
+          "properties": {
+              "cssOrganizer.propertyGroups": {
+                  "type": "array",
+                  "default": [
+                      {
+                          "name": "Size & Box Model",
+                          "properties": [
+                              "width", "min-width", "max-width",
+                              "height", "min-height", "max-height",
+                              "box-sizing",
+                              "aspect-ratio"
+                          ]
+                      },
+                      {
+                          "name": "Display & Positioning",
+                          "properties": [
+                              "display",
+                              "flex*", "grid*", "align*", "justify*",
+                              "gap", "row-gap", "column-gap",
+                              "margin*", "padding*"
+                          ]
+                      },
+                      {
+                          "name": "Colors & Borders",
+                          "properties": [
+                              "background*", "border*",
+                              "outline*", "opacity"
+                          ]
+                      },
+                      {
+                          "name": "Effects",
+                          "properties": [
+                              "box-shadow", "text-shadow",
+                              "filter", "backdrop-filter",
+                              "transform", "transition*", "animation*"
+                          ]
+                      },
+                      {
+                          "name": "Typography",
+                          "properties": [
+                              "font*", "text*", "letter-spacing",
+                              "line-height", "word-spacing",
+                              "white-space", "color"
+                          ]
+                      }
+                  ],
+                  "description": "Define property groups and their order. Use * as wildcard (e.g., 'margin*' matches margin-top, margin-left, etc.)"
+              },
+              "cssOrganizer.addBlankLinesBetweenGroups": {
+                  "type": "boolean",
+                  "default": true,
+                  "description": "Add blank lines between property groups"
+              },
+              "cssOrganizer.sortPropertiesInGroup": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Sort properties alphabetically within each group"
+              }
+          }
       }
-    ]
-  },
-  "scripts": {
-    "lint": "eslint .",
-    "pretest": "npm run lint",
-    "test": "vscode-test"
-  },
-  "devDependencies": {
-    "@types/mocha": "^10.0.10",
-    "@types/node": "22.x",
-    "@types/vscode": "^1.106.1",
-    "@vscode/test-cli": "^0.0.12",
-    "@vscode/test-electron": "^2.5.2",
-    "eslint": "^9.39.1"
   },
   "dependencies": {
-    "postcss": "^8.5.6"
+      "postcss": "^8.4.31"
   }
 }
