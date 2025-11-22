@@ -47,7 +47,7 @@ Properties that don't match any group are placed at the end in an "unknown" grou
 ## Example
 
 **Before:**
-\`\`\`css
+```css
 .button {
     color: blue;
     width: 100px;
@@ -56,10 +56,10 @@ Properties that don't match any group are placed at the end in an "unknown" grou
     height: 40px;
     margin: 10px;
 }
-\`\`\`
+```
 
 **After:**
-\`\`\`css
+```css
 .button {
     width: 100px;
     height: 40px;
@@ -71,4 +71,4 @@ Properties that don't match any group are placed at the end in an "unknown" grou
     
     color: blue;
 }
-\`\`\`
+```
